@@ -1,0 +1,5 @@
+@include('components.head')
+@include('components.navbar')
+@include('components.sidebar')
+@yield('content')
+@include('components.script')
