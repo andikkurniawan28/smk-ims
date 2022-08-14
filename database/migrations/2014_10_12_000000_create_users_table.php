@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('name');
-            $table->string('address');
-            $table->string('whatsapp');
-            $table->string('email');
+            $table->string('address')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('email')->nullable();
             $table->string('birthplace')->nullable();
             $table->date('birthday')->nullable();
             $table->string('university')->nullable();
