@@ -23,7 +23,6 @@ class UserController extends Controller
         $teacher = Teacher::all();
         $major = Major::all();
         $subject = Subject::all();
-
         return view('user.create', [
             'role' => $role,
             'teacher' => $teacher,
