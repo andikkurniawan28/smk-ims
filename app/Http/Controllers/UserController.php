@@ -43,19 +43,12 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::join('roles', 'users.role_id', '=', 'roles.role_id')
-        ->join('teachers', 'users.teacher_id', '=', 'teachers.teacher_id')
-        ->join('majors', 'users.major_id', '=', 'majors.major_id')
-        ->join('subjects', 'users.subject_id', '=', 'subjects.subject_id')
-        ->select(
-            'users.*', 
-            'roles.role_name', 
-            'teachers.teacher_name', 
-            'majors.major_name', 
-            'subjects.subject_name'
-            )
-        ->where('users.user_id', '=', $id)
-        ->get();
-
+            ->join('teachers', 'users.teacher_id', '=', 'teachers.teacher_id')
+            ->join('majors', 'users.major_id', '=', 'majors.major_id')
+            ->join('subjects', 'users.subject_id', '=', 'subjects.subject_id')
+            ->select('users.*', 'roles.role_name', 'teachers.teacher_name', 'majors.major_name', 'subjects.subject_name')
+            ->where('users.user_id', '=', $id)
+            ->get();
         return view('user.show', compact('user'));
     }
 
