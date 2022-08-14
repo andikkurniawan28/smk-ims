@@ -33,8 +33,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->request->add(
-            ['password' => $this->generatePassword($request->username)]);
+        $request->request->add(['password' => $this->generatePassword($request->username)]);
         User::create($request->all());
         return $this->backToRouteWithMessage('index', 'disimpan');
     }
