@@ -42,7 +42,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="/admin/major" class="nav-link">
-                            <i class="far fa-id-card nav-icon"></i>
+                            <i class="fas fa-solid fa-wrench"></i>
                             <p>Jurusan</p>
                             </a>
                         </li>
