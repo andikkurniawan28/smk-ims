@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id('student_id');
             $table->integer('major_id')->index();
+            $table->integer('classroom_id')->index();
             $table->integer('internship_id')->index();
             $table->string('student_name');
             $table->string('address')->nullable();
