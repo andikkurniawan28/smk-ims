@@ -10,7 +10,7 @@
     <thead>
         <tr>
           <th>ID</th>
-          <th>Nama Mata Pelajaran</th>
+          <th>Mapel</th>
           <th>Jurusan</th>
           <th>Action</th>
         </tr>

@@ -12,8 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('admin/user', UserController::class);
-Route::resource('admin/role', RoleController::class);
-Route::resource('admin/major', MajorController::class);
-Route::resource('admin/teacher', TeacherController::class);
-Route::resource('admin/subject', SubjectController::class);
+Route::resources([
+    'admin/user' => UserController::class,
+    'admin/role' => RoleController::class,
+    'admin/major' => MajorController::class,
+    'admin/teacher' => TeacherController::class,
+    'admin/subject' => SubjectController::class,
+]);
