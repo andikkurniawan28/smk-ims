@@ -21,22 +21,23 @@ class DatabaseSeeder extends Seeder
         ];
 
         $teacher = [
-            ['teacher_id' => 1, 'teacher_name' => 'Non Pengajar'],
+            ['teacher_id' => 1, 'teacher_name' => 'Non-Pengajar'],
             ['teacher_id' => 2, 'teacher_name' => 'Normatif'],
             ['teacher_id' => 3, 'teacher_name' => 'Produktif']
         ];
 
         $major = [
-            ['major_id' => 1, 'major_name' => 'Non Produktif'],
+            ['major_id' => 1, 'major_name' => 'Non-Produktif'],
             ['major_id' => 2, 'major_name' => 'Teknik Alat Berat'],
             ['major_id' => 3, 'major_name' => 'Teknik Kendaraan Ringan'],
             ['major_id' => 4, 'major_name' => 'Teknik Komputer Jaringan']
         ];
 
         $subject = [
-            ['subject_id' => 1, 'subject_name' => 'Pendidikan Agama Islam', 'major_id' => 1],
-            ['subject_id' => 2, 'subject_name' => 'PKN', 'major_id' => 1],
-            ['subject_id' => 3, 'subject_name' => 'Bahasa Indonesia', 'major_id' => 1],
+            ['subject_id' => 1, 'subject_name' => 'Non-Pengajar'],
+            ['subject_id' => 2, 'subject_name' => 'Pendidikan Agama Islam', 'major_id' => 1],
+            ['subject_id' => 3, 'subject_name' => 'PKN', 'major_id' => 1],
+            ['subject_id' => 4, 'subject_name' => 'Bahasa Indonesia', 'major_id' => 1],
             ['subject_id' => 4, 'subject_name' => 'Matematika', 'major_id' => 1]
         ];
         

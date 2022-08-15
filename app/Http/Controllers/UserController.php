@@ -81,6 +81,8 @@ class UserController extends Controller
             'teacher_id' => $request->teacher_id,
             'major_id' => $request->major_id,
             'subject_id' => $request->subject_id,
+            'whatsapp' => $request->whatsapp,
+            'email' => $request->email,
         ]);
         return $this->backToRouteWithMessage('index', 'dirubah');
     }
