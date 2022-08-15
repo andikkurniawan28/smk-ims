@@ -14,7 +14,8 @@ class MajorController extends Controller
      */
     public function index()
     {
-        //
+        $major = Major::all();
+        return view('major.index', compact('major'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('major.create');
     }
 
     /**
@@ -35,7 +36,8 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Major::create($request->all());
+        return $this->backToRouteWithMessage('index', 'disimpan');
     }
 
     /**
@@ -44,9 +46,10 @@ class MajorController extends Controller
      * @param  \App\Models\Major  $major
      * @return \Illuminate\Http\Response
      */
-    public function show(Major $major)
+    public function show($id)
     {
-        //
+        $major = Major::where('major_id', $id)->get();
+        return view('major.show', compact('major'));
     }
 
     /**
@@ -55,9 +58,10 @@ class MajorController extends Controller
      * @param  \App\Models\Major  $major
      * @return \Illuminate\Http\Response
      */
-    public function edit(Major $major)
+    public function edit($id)
     {
-        //
+        $major = Major::where('major_id', $id)->get();
+        return view('major.edit', compact('major'));
     }
 
     /**
@@ -67,9 +71,12 @@ class MajorController extends Controller
      * @param  \App\Models\Major  $major
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Major $major)
+    public function update(Request $request, $id)
     {
-        //
+        Major::where('major_id', $id)->update([
+            'major_name' => $request->major_name
+        ]);
+        return $this->backToRouteWithMessage('index', 'dirubah');
     }
 
     /**
@@ -78,8 +85,15 @@ class MajorController extends Controller
      * @param  \App\Models\Major  $major
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Major $major)
+    public function destroy($id)
     {
-        //
+        Major::where('major_id', $id)->delete();
+        return $this->backToRouteWithMessage('index', 'dihapus');
     }
+
+    public function backToRouteWithMessage($where, $message)
+    {
+        return redirect()->route('major.'.$where)->with('success','Data berhasil '.$message);
+    }
+
 }

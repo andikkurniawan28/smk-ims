@@ -8,77 +8,27 @@
     <div class="container-fluid">
       <div class="row gutters-sm">
 
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
-                  <img src="/AdminLTE-master/dist/img/user2-160x160.jpg" alt="Admin" class="rounded-circle" width="150">
-                  <div class="mt-3">
-                    <h4>{{ $user->name }}</h4>
-                    <p class="text-secondary mb-1">{{ $user->email }}</p>
-                    <p class="text-muted font-size-sm">{{ $user->address }}</p>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                      <a href="https://wa.me/{{ $user->whatsapp }}" class="btn btn-outline-success">WA</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          @include('content.profile.profile_card',[
+            'name' => $user->name,
+            'email' => $user->email,
+            'address' => $user->address,
+            'whatsapp' => $user->whatsapp,
+          ])
 
-          <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Jabatan</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ $user->role_name }}
-                    </div>
-                  </div>
-                  <hr>
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Jurusan</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ $user->major_name }}
-                    </div>
-                  </div>
-                  <hr>
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mata Pelajaran</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ $user->subject_name }}
-                    </div>
-                  </div>
-                  <hr>
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Spesialisasi</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      {{ $user->teacher_name }}
-                    </div>
-                  </div>
-                  <hr>
+          @include('content.profile.profile_detail',[
+            'jabatan' => $user->role_name,
+            'spesialisasi' => $user->teacher_name,
+            'jurusan' => $user->major_name,
+            'mata_pelajaran' => $user->subject_name,
+            'created_at' => date('d F Y', strtotime($user->created_at)),
+            'updated_at' => date('d F Y', strtotime($user->updated_at)),
+          ])
 
-                </div>
-              </div>
-          </div>
-    </div>
+      </div>
     </div>
     @endforeach
 
     
 </div>
-
 @include('components.footer')
 @endsection

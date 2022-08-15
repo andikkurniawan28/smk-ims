@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+        return view('role.index', compact('role'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role.create');
     }
 
     /**
@@ -35,7 +36,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create($request->all());
+        return $this->backToRouteWithMessage('index', 'disimpan');
+
     }
 
     /**
@@ -44,9 +47,10 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
-        //
+        $role = Role::where('role_id', $id)->get();
+        return view('role.show', compact('role'));
     }
 
     /**
@@ -55,9 +59,10 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        $role = Role::where('role_id', $id)->get();
+        return view('role.edit', compact('role'));
     }
 
     /**
@@ -67,9 +72,13 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        Role::where('role_id', $id)->update([
+            'role_name' => $request->role_name
+        ]);
+        return $this->backToRouteWithMessage('index', 'dirubah');
+
     }
 
     /**
@@ -78,8 +87,14 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+        Role::where('role_id', $id)->delete();
+        return $this->backToRouteWithMessage('index', 'dihapus');
+    }
+
+    public function backToRouteWithMessage($where, $message)
+    {
+        return redirect()->route('role.'.$where)->with('success','Data berhasil '.$message);
     }
 }

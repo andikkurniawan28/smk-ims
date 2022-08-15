@@ -35,9 +35,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin/role" class="nav-link">
+                            <a href="/admin/role" class="nav-link">
                             <i class="far fa-id-card nav-icon"></i>
                             <p>Jabatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/major" class="nav-link">
+                            <i class="far fa-id-card nav-icon"></i>
+                            <p>Jurusan</p>
                             </a>
                         </li>
                     </ul>
