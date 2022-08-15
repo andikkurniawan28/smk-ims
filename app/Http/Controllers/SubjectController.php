@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\Major;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -14,7 +15,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subject = Subject::join('majors', 'subjects.major_id', '=', 'majors.major_id')
+        ->select('subjects.*', 'majors.major_name')
+        ->get();
+        return view('subject.index', compact('subject'));
     }
 
     /**
@@ -24,7 +28,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $major = Major::all();
+        return view('subject.create', compact('major'));
     }
 
     /**
@@ -35,7 +40,8 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Subject::create($request->all());
+        return $this->backToRouteWithMessage('index', 'disimpan');
     }
 
     /**
@@ -44,9 +50,10 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject $subject)
+    public function show($id)
     {
-        //
+        $subject = Subject::where('subject_id', $id)->get();
+        return view('subject.show', compact('subject'));
     }
 
     /**
@@ -55,9 +62,14 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject $subject)
+    public function edit($id)
     {
-        //
+        $major = Major::all();
+        $subject = Subject::where('subject_id', $id)->get();
+        return view('subject.edit', [
+            'subject' => $subject,
+            'major' => $major,
+        ]);
     }
 
     /**
@@ -67,9 +79,13 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, $id)
     {
-        //
+        Subject::where('subject_id', $id)->update([
+            'subject_name' => $request->subject_name,
+            'major_id' => $request->major_id,
+        ]);
+        return $this->backToRouteWithMessage('index', 'dirubah');
     }
 
     /**
@@ -78,8 +94,14 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy($id)
     {
-        //
+        Subject::where('subject_id', $id)->delete();
+        return $this->backToRouteWithMessage('index', 'dihapus');
+    }
+
+    public function backToRouteWithMessage($where, $message)
+    {
+        return redirect()->route('subject.'.$where)->with('success','Data berhasil '.$message);
     }
 }
