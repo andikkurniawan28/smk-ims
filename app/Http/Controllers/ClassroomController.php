@@ -53,7 +53,7 @@ class ClassroomController extends Controller
     public function show($id)
     {
         $classroom = Classroom::where('classroom_id', $id)
-        ->join('majors', 'classrooms.major_id', '=', 'majors.major_id')
+        ->join('majors', 'classrooms.major_id', 'majors.major_id')
         ->get();
         return view('classroom.show', compact('classroom'));
     }

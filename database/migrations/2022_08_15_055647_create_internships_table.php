@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('major_id')->index();
             $table->integer('user_id')->index();
             $table->string('internship_place');
-            $table->string('internship_score');
             $table->timestamps();
         });
     }

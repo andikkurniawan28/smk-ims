@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('student_id');
             $table->integer('major_id')->index();
             $table->integer('classroom_id')->index();
-            $table->integer('internship_id')->index();
+            $table->integer('internship_id')->nullable()->index();
             $table->string('student_name');
             $table->string('address')->nullable();
             $table->string('sex')->nullable();

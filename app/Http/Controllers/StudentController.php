@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Major;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -30,7 +31,8 @@ class StudentController extends Controller
     public function create()
     {
         $major = Major::all();
-        return view('student.create', compact('major'));
+        $classroom = Classroom::all();
+        return view('student.create', compact('major', 'classroom'));
     }
 
     /**
@@ -65,8 +67,10 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::where('student_id', $id)->join('majors', 'students.major_id', '=', 'majors.major_id')->get();
-        return view('student.edit', compact('student'));
+        $major = Major::all();
+        $classroom = Classroom::all();
+        $student = Student::where('student_id', $id)->get();
+        return view('student.edit', compact('student', 'major', 'classroom'));
     }
 
     /**
@@ -80,11 +84,11 @@ class StudentController extends Controller
     {
         Student::where('student_id', $id)->update([
             'student_name' => $request->student_name,
-            'major_id' => $request->student_name,
-            'internship_id' => $request->student_name,
-            'address' => $request->student_name,
-            'sex' => $request->student_name,
-            'religion' => $request->student_name,
+            'major_id' => $request->major_id,
+            'classroom_id' => $request->classroom_id,
+            'address' => $request->address,
+            'sex' => $request->sex,
+            'religion' => $request->religion,
             'birthplace' => $request->birthplace,
             'birthday' => $request->birthday,
             'whatsapp' => $request->whatsapp,
