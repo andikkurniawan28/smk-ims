@@ -8,17 +8,17 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ClassroomController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resources([
-    'admin/user' => UserController::class,
-    'admin/role' => RoleController::class,
-    'admin/major' => MajorController::class,
-    'admin/teacher' => TeacherController::class,
-    'admin/subject' => SubjectController::class,
-    'admin/degree' => DegreeController::class,
-    'admin/student' => StudentController::class,
-]);
+Route::resources(['admin/user' => UserController::class]);
+Route::resources(['admin/role' => RoleController::class]);
+Route::resources(['admin/major' => MajorController::class]);
+Route::resources(['admin/teacher' => TeacherController::class]);
+Route::resources(['admin/subject' => SubjectController::class]);
+Route::resources(['admin/degree' => DegreeController::class]);
+Route::resources(['admin/student' => StudentController::class]);
+Route::resources(['admin/classroom' => ClassroomController::class]);

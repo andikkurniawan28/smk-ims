@@ -10,6 +10,7 @@ use App\Models\Major;
 use App\Models\Subject;
 use App\Models\Degree;
 use App\Models\Student;
+use App\Models\Classroom;
 
 class DatabaseSeeder extends Seeder
 {
@@ -74,6 +75,12 @@ class DatabaseSeeder extends Seeder
             ['student_id' => 3, 'student_name' => 'Candra', 'classroom_id' => 3, 'major_id' => 4, 'internship_id' => 3],
         ];
 
+        $classroom = [
+            ['classroom_id' => 1, 'classroom_name' => '10TAB1', 'major_id' => 2],
+            ['classroom_id' => 2, 'classroom_name' => '10TKR1', 'major_id' => 3],
+            ['classroom_id' => 3, 'classroom_name' => '10TKJ1', 'major_id' => 4],
+        ];
+
         User::insert($user);
         Role::insert($role);
         Teacher::insert($teacher);
@@ -81,5 +88,6 @@ class DatabaseSeeder extends Seeder
         Subject::insert($subject);
         Degree::insert($degree);
         Student::insert($student);
+        Classroom::insert($classroom);
     }
 }

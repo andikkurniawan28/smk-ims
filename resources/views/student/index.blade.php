@@ -14,8 +14,9 @@
           <th>ID</th>
           <th>Nama</th>
           <th>Jurusan</th>
+          <th>Kelas</th>
           <th>Alamat</th>
-          <th>Whatsapp</th>
+          <th>WA</th>
           <th>Action</th>
         </tr>
     </thead>
@@ -25,6 +26,7 @@
           <td>{{ $student->student_id }}</td>
           <td><a href="{{ route('student.show', $student->student_id) }}">{{ $student->student_name }}</a></td>
           <td>{{ $student->major_name }}</td>
+          <td>{{ $student->classroom_name }}</td>
           <td>{{ $student->address }}</td>
           <td>{{ $student->whatsapp }}</td>
           <td>

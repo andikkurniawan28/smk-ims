@@ -16,10 +16,9 @@ class StudentController extends Controller
     public function index()
     {
         $student = Student::join('majors', 'students.major_id', '=', 'majors.major_id')
-        // ->join('classrooms', 'students.classroom_id', '=', 'classrooms.classroom_id')
-        ->select('students.*', 'majors.major_name')
+        ->join('classrooms', 'students.classroom_id', '=', 'classrooms.classroom_id')
+        ->select('students.*', 'majors.major_name', 'classrooms.classroom_name')
         ->get();
-        // $student = Student::all();
         return view('student.index', compact('student'));
     }
 

@@ -15,8 +15,8 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classroom = Classroom::join('majors', 'classrooms.major_id', '=', 'majors.major_id')
-        ->select('classroms.*', 'majors.major_name')
+        $classroom = Classroom::join('majors', 'classrooms.major_id', 'majors.major_id')
+        ->select('classrooms.*', 'majors.major_name')
         ->get();
         return view('classroom.index', compact('classroom'));
     }
@@ -66,10 +66,9 @@ class ClassroomController extends Controller
      */
     public function edit($id)
     {
-        $classroom = Classroom::where('classroom_id', $id)
-        ->join('majors', 'classrooms.major_id', '=', 'majors.major_id')
-        ->get();
-        return view('classroom.edit', compact('classroom'));
+        $classroom = Classroom::where('classroom_id', $id)->get();
+        $major = Major::all();
+        return view('classroom.edit', compact('classroom', 'major'));
     }
 
     /**
